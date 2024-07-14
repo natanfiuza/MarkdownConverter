@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Converte Markdown para HTML</title>
+  <!-- carrega FIra Code do Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
+  <!-- carrega Highlight -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+  <!-- carrega jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- carrega Marked -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet" href="./css/github-markdown-dark.css" />
+  <style>
+    body {
+      font-family: "Libre Franklin", sans-serif;
+      font-optical-sizing: auto;
+      font-style: normal;
+      font-weight: 200;
+    }
+
+    code {
+      background-color: rgb(242, 242, 242) !important;
+      font-family: "Fira Code", monospace;
+      margin-left: 2px;
+      margin-right: 2px;
+      padding-left: 3px;
+      padding-right: 3px;
+      font-weight: 300;
+    }
+
+    .hljs {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Seu conteúdo HTML aqui -->
+  <div id="content"></div>
+  <script>
+    // Exemplo de uso
+    $(document).ready(function () {
+      $.getJSON("./detalhes.json", function (data) {
+       
+        const converter = new MarkdownConverter();
+        const markdownText = data.content;
+        const elementId = "content";
+        converter.convert(markdownText, elementId);
+        hljs.highlightAll();
+        $("pre code").each((el) => {
+          hljs.highlightElement(el);
+        });
+        $("pre code").each((el) => {
+          $(el).addClass('markdown-body');
+        });
+      }).fail(function (jqxhr, textStatus, error) {
+        console.error("Erro ao carregar o arquivo JSON:", textStatus, error);
+      });
+    });
+  </script>
+  <script src="./markdown_converter_class.js"></script>
+</body>
+
+</html>
