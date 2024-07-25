@@ -7,7 +7,7 @@ Este projeto teste utiliza uma classe em jQuery para converter uma string format
 
 Criar uma classe em jQuery chamada `MarkdownConverter` com um método `convert`. Esse método receberá uma string no formato Markdown, a converterá para HTML e injetará o resultado em um elemento especificado pelo seu ID.
 
-Para converter a string Markdown em HTML, utilutilizaremos a biblioteca `marked`, que é uma popular biblioteca JavaScript para conversão de Markdown.
+Para converter a string Markdown em HTML, utilutilizaremos a biblioteca [`marked`](https://github.com/markedjs/marked), que é uma popular biblioteca JavaScript para conversão de Markdown.
 
 ### **Descrição do código**
 
